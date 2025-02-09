@@ -1,0 +1,31 @@
+<!-- <div class="resu">
+  <div class="hding">
+    Search results for: {{ result }}
+  </div>
+  <div class="row">
+    <div *ngFor="let item of RecipeList; let i = index" class="col-3">
+      <app-recipe-cards [text]="item.id" [Title]="item.title" [imga]="item.image"></app-recipe-cards>
+    </div>
+  </div>
+</div> -->
+<div class="resu">
+  <div class="hding">
+    Search results for: {{ result }}
+  </div>
+  <div *ngIf="RecipeList.length > 0; else noResults" class="row">
+    <div *ngFor="let recipe of RecipeList" class="col-3">
+      <app-recipe-cards
+        [text]="recipe.id"
+        [Title]="recipe.title"
+        [imga]="recipe.image"
+        (click)="routeRecipe(recipe.id)"
+        >
+      </app-recipe-cards>
+        <button (click)="addToLiked(recipe)">Add to Liked</button>
+    </div>
+    
+  </div>
+  <ng-template #noResults>
+    <p>No results found or loading...</p>
+  </ng-template>
+</div>
