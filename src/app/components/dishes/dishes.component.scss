@@ -1,0 +1,64 @@
+
+.dish{
+    margin-top: 20px;
+    /* margin-left: 30px; */
+    /* border: 2px solid red; */
+    width: 100%;
+    font-family: Aleo;
+    color: #73170F;
+}
+
+.dcard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 150px;
+    
+    box-shadow: 0 2px 5px rgb(66, 66, 66);
+    width: 150px;
+    background-color: #FAC55F;
+    border-radius: 10px;
+    justify-content: center;
+    padding: 20px;
+    font-weight: 900;
+
+}
+.dcard:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 4px 10px rgba(66, 66, 66, 0.5); 
+    background-color: #f8b739; 
+    cursor: pointer; 
+    transition: all 0.3s ease-in-out; 
+}
+
+.dcard.row{
+    align-items: center;
+    justify-content: space-evenly;
+    width: 150px;
+}
+.dimg{
+    /* border: 2px solid red; */
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    padding: 0;
+}
+
+
+.dtitle{
+    font: bold;
+    font-size: 56px;
+    font-weight:bolder;
+    margin-left: 30px;
+}
+
+.showRow{
+    /* border: 2px solid red; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px
+}
