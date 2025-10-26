@@ -1,0 +1,59 @@
+<div class="flex bg-login justify-content-center align-items-center h-screen">
+  <p-card class="border-rounded">
+    <ng-template #header>
+      <div class="p-2 text-left bg-header text-color-6 login-header">
+        <h2 class="m-0 flex gap-2">
+          <span class="font-bold text-2xl">Login to Striveo</span>
+          <!-- <span class="font-light">{{ isForgotPassword ? 'FORGOT PASSWORD' : 'LOGIN' }}</span> -->
+        </h2>
+        <small class="text-xs">
+         Fill Your Login Details
+        </small>
+      </div>
+    </ng-template>
+
+    <!-- LOGIN SECTION -->
+ 
+    <form
+      [formGroup]="loginForm"
+      class="p-fluid"
+      (ngSubmit)="onLogin(loginForm)"
+    >
+      <div class="p-field">
+        <label for="userId">User ID</label>
+        <input
+          id="userId"
+          name="username"
+          type="text"
+          pInputText
+          placeholder="User ID"
+          formControlName="userId"
+          [autofocus]="true"
+        />
+        @if (showLoginError && !loginForm.get('userId')?.value) {
+        <span class="mt-2 text-center text-xs font-medium text-light-red"
+          >User ID is required</span
+        >
+        }
+      </div>
+      <div class="p-field">
+        <label for="password">Password</label>
+        <p-password
+          id="password"
+          name="password"
+          type="password"
+          placeholder="Password"
+          [feedback]="false"
+          formControlName="password"
+          [toggleMask]="true"
+        ></p-password>
+        @if (showLoginError && !loginForm.get('password')?.value) {
+        <span class="mt-2 text-center text-xs font-medium text-light-red"
+          >Password is required</span
+        >
+        }
+      </div>
+      <p-button label="LOGIN" type="submit"></p-button>
+    </form>
+  </p-card>
+</div>

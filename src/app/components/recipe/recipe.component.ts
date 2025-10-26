@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './recipe.component.html',
   standalone: true,
   imports: [CommonModule, HttpClientModule],
-  styleUrls: ['./recipe.component.css']
+  styleUrls: ['./recipe.component.scss']
 })
 export class RecipeComponent implements OnInit {
   recipeData: any = {};
