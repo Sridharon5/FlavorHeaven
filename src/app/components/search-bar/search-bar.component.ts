@@ -1,135 +1,147 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { GetApiService } from '../../services/getapiservice.service';
 import { CommonModule } from '@angular/common';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs'; // Import Subject for reactive input handling
+import { Observable, Subject } from 'rxjs';
+import { GetApiService } from '../../services/getapiservice.service';
+
+// PrimeNG imports
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { SelectModule } from 'primeng/select';
+import { ButtonModule } from 'primeng/button';
+import { ChipModule } from 'primeng/chip';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @Component({
   selector: 'app-search-bar',
-  imports: [FormsModule, CommonModule],
+  standalone: true,
+  imports: [
+    FormsModule,
+    CommonModule,
+    AutoCompleteModule,
+    SelectModule,
+    ButtonModule,
+    ChipModule,
+    MultiSelectModule
+  ],
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.scss'],
+  styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent {
   searchedItem: string = '';
-  type: string = 'Dish'; // Default search type
-  suggestions: string[] = []; // Holds autocomplete suggestions
-  selectedIngredients: string[] = []; // Holds selected ingredients for multi-select
+  type: string = 'Dish';
+  suggestions: string[] = [];
+  selectedIngredients: string[] = [];
   showSuggestions: boolean = false;
-  
-  // Subject to track the search term (instead of an Observable directly)
+   selectRecipeChoices=[
+            { label: 'By Dish', value: 'Dish' },
+            { label: 'By Ingredient', value: 'Ingredient' }
+          ];
+
   private searchSubject: Subject<string> = new Subject<string>();
 
   constructor(private router: Router, private apiService: GetApiService) {
-    // Subscribe to the searchSubject to trigger search when the term changes
-    this.searchSubject.pipe(
-      debounceTime(300), // Wait for 300ms after typing stops
-      distinctUntilChanged(), // Only trigger if the term has changed
-      switchMap((term) => this.fetchSuggestions(term)) // Fetch suggestions based on the term
-    ).subscribe({
-      next: (suggestions: string[]) => {
-        this.suggestions = suggestions;
-        this.showSuggestions = true;
-      },
-      error: (err) => console.error('Error fetching suggestions:', err)
-    });
+    this.searchSubject
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((term) => this.fetchSuggestions(term))
+      )
+      .subscribe({
+        next: (suggestions: string[]) => {
+          this.suggestions = suggestions;
+          this.showSuggestions = true;
+        },
+        error: (err) => console.error('Error fetching suggestions:', err)
+      });
   }
 
-  dotdRecipes:any[]=[
+  dotdRecipes: any[] = [
     {
-      id: 801377, 
+      id: 801377,
       title: 'Chicken Parmesan Patty- Eat As A Burger OR On Pasta',
       image: 'https://img.spoonacular.com/recipes/801377-312x231.jpg',
       imageType: 'jpg'
     },
     {
-      id: 637631, 
+      id: 637631,
       title: 'Cheesy Bacon Burger with Spicy Chipotle Aiolo Sauce',
-      image: 'https://img.spoonacular.com/recipes/637631-312x231.jpg', 
+      image: 'https://img.spoonacular.com/recipes/637631-312x231.jpg',
       imageType: 'jpg'
     },
-    {id: 639708,
-      title: 'Coconut & Pomogranate Ice Cream - Raw and Vegan', 
-      image: 'https://img.spoonacular.com/recipes/639708-312x231.jpg', 
+    {
+      id: 639708,
+      title: 'Coconut & Pomogranate Ice Cream - Raw and Vegan',
+      image: 'https://img.spoonacular.com/recipes/639708-312x231.jpg',
       imageType: 'jpg'
     }
-  ]
-  // Handle Dish of the Day (DOTD)
+  ];
+
   handledotd(): void {
     const randomIndex = Math.floor(Math.random() * this.dotdRecipes.length);
     const selectedRecipe = this.dotdRecipes[randomIndex];
-
-    // Navigate to the 'search/dotd' route, passing the recipe ID as a route parameter
     this.router.navigate([`/recipes/${selectedRecipe.id}`]);
   }
 
-  // Fetch autocomplete suggestions for dish or ingredients
   fetchSuggestions(term: string): Observable<string[]> {
     if (this.type === 'Dish') {
-      // Fetch dish suggestions from API
-      return this.apiService.getDishSuggestions(term); // Returns Observable<string[]>
+      return this.apiService.getDishSuggestions(term);
     } else if (this.type === 'Ingredient') {
-      // Fetch ingredient suggestions from API
-      return this.apiService.getIngredientSuggestions(term); // Returns Observable<string[]>
+      return this.apiService.getIngredientSuggestions(term);
     }
-    return new Observable(); // Return empty observable if no type selected
+    return new Observable();
   }
 
-  // Handle selection of a suggestion
-  selectSuggestion(suggestion: string): void {
+  selectSuggestion(suggestion: any): void {
+    const selected = suggestion?.value ?? suggestion;
     if (this.type === 'Dish') {
-      this.searchedItem = suggestion;
+      this.searchedItem = selected;
       this.showSuggestions = false;
     } else if (this.type === 'Ingredient') {
-      if (!this.selectedIngredients.includes(suggestion)) {
-        this.selectedIngredients.push(suggestion);
+      if (!this.selectedIngredients.includes(selected)) {
+        this.selectedIngredients.push(selected);
       }
       this.showSuggestions = false;
     }
   }
 
-  // Handle type change (Dish or Ingredient)
   handleType(name: string): void {
     this.type = name;
-    this.searchedItem = '';
     this.suggestions = [];
     this.selectedIngredients = [];
+    this.searchedItem = '';
     this.showSuggestions = false;
   }
 
-  // Method to handle ingredient selection
-  selectIngredient(ingredient: string) {
-    if (!this.selectedIngredients.includes(ingredient)) {
-      this.selectedIngredients.push(ingredient);
-    }
+  selectIngredient(ingredients: string[]): void {
+    this.selectedIngredients = ingredients;
   }
 
-  // Method to remove selected ingredient
-  removeSelectedIngredient(ingredient: string) {
+  removeSelectedIngredient(ingredient: any): void {
     const index = this.selectedIngredients.indexOf(ingredient);
     if (index > -1) {
       this.selectedIngredients.splice(index, 1);
     }
   }
 
-  // Method to trigger search based on user input
   search(): void {
     if (this.type === 'Dish') {
-      this.router.navigate(['/search'], { queryParams: { dish: this.searchedItem } });
+      this.router.navigate(['/search'], {
+        queryParams: { dish: this.searchedItem }
+      });
     } else if (this.type === 'Ingredient') {
-      this.router.navigate(['/search'], { queryParams: { ingredients: this.selectedIngredients.join(',') } });
+      this.router.navigate(['/search'], {
+        queryParams: { ingredients: this.selectedIngredients.join(',') }
+      });
     }
 
-    // Reset search UI after search
     this.selectedIngredients = [];
     this.suggestions = [];
     this.searchedItem = '';
   }
 
-  // Watch for input changes and trigger the searchSubject
   onInputChange(): void {
-    this.searchSubject.next(this.searchedItem); // Emit the new value to the subject
+    this.searchSubject.next(this.searchedItem);
   }
 }

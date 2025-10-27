@@ -304,117 +304,117 @@ p-inputOtp {
 //   }
 // }
 
-// p-select,
-// p-multiselect {
-//     width: 100%;
-//     transition: none !important;
-//     border: none !important;
-//     &.bg-white {
-//         input,
-//         .p-select-label,
-//         .p-multiselect-label {
-//             background-color: $white !important;
-//             color: $gray-6 !important;
-//             &.p-placeholder {
-//                 color: var(--p-form-field-placeholder-color) !important;
-//             }
-//         }
-//     }
-//     &.trainer {
-//       width:30% !important;
-//         input,
-//         .p-select-label,
-//         .p-multiselect-label {
-//             background-color: $white !important;
-//             color: $gray-6 !important;
-//             padding:0.5rem !important;
-//             &.p-placeholder {
-//                 color: var(--p-form-field-placeholder-color) !important;
-//             }
-//         }
-//     }
+p-select,
+p-multiselect {
+    width: 100%;
+    transition: none !important;
+    border: none !important;
+    &.bg-white {
+        input,
+        .p-select-label,
+        .p-multiselect-label {
+            background-color: $white !important;
+            color: $gray-6 !important;
+            &.p-placeholder {
+                color: var(--p-form-field-placeholder-color) !important;
+            }
+        }
+    }
+    &.trainer {
+      width:30% !important;
+        input,
+        .p-select-label,
+        .p-multiselect-label {
+            background-color: $white !important;
+            color: $gray-6 !important;
+            padding:0.5rem !important;
+            &.p-placeholder {
+                color: var(--p-form-field-placeholder-color) !important;
+            }
+        }
+    }
     
-//     input,
-//     .p-select-label,
-//     .p-multiselect-label {
-//         border: none !important;
-//         border-radius: 5px !important;
-//         padding: 0.25rem 0.5rem !important;
-//         width: 100% !important;
-//         font-size: 0.875rem !important;
-//         padding-right: 0 !important;
-//     }
-//     &.p-focus {
-//         border: none !important;
-//     }
-//     timesicon,
-//     .p-select-clear-icon,
-//     .p-multiselect-clear-icon {
-//         margin-top: -0.35rem;
-//         inset-inline-end: 1.75rem !important;
-//         svg {
-//             height: 10px;
-//             width: 10px;
-//         }
-//     }
-//     .p-select-dropdown,
-//     .p-multiselect-dropdown {
-//         width: 2rem;
-//         chevrondownicon {
-//             svg {
-//                 height: 12px;
-//                 width: 12px;
-//             }
-//         }
-//     }
-//     &:focus-visible {
-//         border: none !important;
-//         outline: none !important;
-//     }
-// }
-// p-overlay {
-//     .p-select-overlay,
-//     .p-multiselect-overlay {
-//         .p-select-list-container,
-//         .p-multiselect-list-container {
-//             ul.p-select-list,
-//             ul.p-multiselect-list {
-//                 p-selectitem,
-//                 p-multiselect-item {
-//                     li.p-select-option,
-//                     li.p-multiselect-option {
-//                         padding: 0.25rem 0.5rem;
-//                         span {
-//                             font-size: 0.875rem;
-//                         }
-//                         p-checkbox {
-//                             height: 0.875rem;
-//                             width: 0.875rem;
-//                             .p-checkbox-box {
-//                                 height: 0.875rem;
-//                                 width: 0.875rem;
-//                             }
-//                             &.p-checkbox-checked {
-//                                 .p-checkbox-box {
-//                                     background-color: $color-1;
-//                                     .p-checkbox-icon {
-//                                         height: 10px;
-//                                         width: 10px;
-//                                     }
-//                                 }
-//                             }
-//                         }
-//                         &.p-select-option-selected,
-//                         &.p-multiselect-option-selected {
-//                             background-color: $color-6;
-//                             color: $color-1;
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
+    input,
+    .p-select-label,
+    .p-multiselect-label {
+        border: none !important;
+        border-radius: 5px !important;
+        padding: 0.25rem 0.5rem !important;
+        width: 100% !important;
+        font-size: 0.875rem !important;
+        padding-right: 0 !important;
+    }
+    &.p-focus {
+        border: none !important;
+    }
+    timesicon,
+    .p-select-clear-icon,
+    .p-multiselect-clear-icon {
+        margin-top: -0.35rem;
+        inset-inline-end: 1.75rem !important;
+        svg {
+            height: 10px;
+            width: 10px;
+        }
+    }
+    .p-select-dropdown,
+    .p-multiselect-dropdown {
+        width: 2rem;
+        chevrondownicon {
+            svg {
+                height: 12px;
+                width: 12px;
+            }
+        }
+    }
+    &:focus-visible {
+        border: none !important;
+        outline: none !important;
+    }
+}
+p-overlay {
+    .p-select-overlay,
+    .p-multiselect-overlay {
+        .p-select-list-container,
+        .p-multiselect-list-container {
+            ul.p-select-list,
+            ul.p-multiselect-list {
+                p-selectitem,
+                p-multiselect-item {
+                    li.p-select-option,
+                    li.p-multiselect-option {
+                        padding: 0.25rem 0.5rem;
+                        span {
+                            font-size: 0.875rem;
+                        }
+                        p-checkbox {
+                            height: 0.875rem;
+                            width: 0.875rem;
+                            .p-checkbox-box {
+                                height: 0.875rem;
+                                width: 0.875rem;
+                            }
+                            &.p-checkbox-checked {
+                                .p-checkbox-box {
+                                    background-color: $color-1;
+                                    .p-checkbox-icon {
+                                        height: 10px;
+                                        width: 10px;
+                                    }
+                                }
+                            }
+                        }
+                        &.p-select-option-selected,
+                        &.p-multiselect-option-selected {
+                            background-color: $color-6;
+                            color: $color-1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 p-datepicker {
     width: 100%;
     transition: none !important;

@@ -7,19 +7,22 @@ import { SearchBarComponent } from '../../components/search-bar/search-bar.compo
   selector: 'app-main-layout',
   imports: [RouterOutlet,SidebarComponent,SearchBarComponent],
   template: `
-  <div class="row ">
-  <app-sidebar class="col-2"></app-sidebar>
-  <div class="row col-10">
-    <app-search-bar></app-search-bar>
-    <router-outlet></router-outlet>
+  <div class="main-layout">
+  <app-sidebar class="sidebar"></app-sidebar>
+
+  <div class="content-area">
+    <div class="top-search-bar">
+      <app-search-bar></app-search-bar>
+    </div>
+
+    <div class="content-body">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
+
   `,
-  styles:[`
-
-    `
-
-  ]
+   styleUrls: ['./main-layout.component.css']
 })
 export class MainLayoutComponent {
 
