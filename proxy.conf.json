@@ -1,0 +1,12 @@
+{
+   "/api": {
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "target": "https://api.spoonacular.com/recipes",
+    "changeOrigin": true,
+    "secure": false,
+    "timeout": 7200000,
+    "logLevel": "debug"
+  } 
+}

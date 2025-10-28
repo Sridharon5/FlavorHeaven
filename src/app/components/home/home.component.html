@@ -1,9 +1,105 @@
+<div *ngIf="showRecipeList===false && showRecipeDetail===false" class="home-container">
+  <!-- Left Section -->
+  <div class="home-left">
+    <!-- Dishes Section -->
+    <section class="dish-section">
+      <h2 class="section-title">Dishes</h2>
+      <div class="dish-grid">
+        <div
+          class="dish-card"
+          *ngFor="let dish of dishes"
+          (click)="handledish(dish.name)"
+        >
+          <img class="dish-image" [src]="dish.img" [alt]="dish.name" />
+          <p class="dish-name">{{ dish.name }}</p>
+        </div>
+      </div>
+    </section>
 
-<div class="row">
-    <div class="col-9">
-    <app-dishes class="cat"></app-dishes>
-    <app-meals></app-meals>
+    <!-- Meals Section -->
+    <section class="meal-section">
+      <h2 class="section-title">Meals</h2>
+      <div class="meal-grid">
+        <div
+          class="meal-card"
+          *ngFor="let meal of meals"
+          (click)="handleMeals(meal.name)"
+        >
+          <img class="meal-image" [src]="meal.img" [alt]="meal.name" />
+          <p class="meal-name">{{ meal.name }}</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Right Section -->
+  <div class="home-right">
+    <section class="cuisine-section">
+      <h2 class="section-title">Cuisine</h2>
+      <div class="cuisine-list">
+        <div
+          class="cuisine-item"
+          *ngFor="let c of cuisines"
+          (click)="handleCuisine(c.name)"
+        >
+          <img class="cuisine-image" [src]="c.img" [alt]="c.name" />
+          <span class="cuisine-name">{{ c.name }}</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div *ngIf="showRecipeList===true && showRecipeDetail===false" class="recipe-list">
+  <div class="heading">
+    Search results for: <span>{{ recipeName}}</span>
+  </div>
+
+  <div *ngIf="recipeList.length > 0; else noResults" class="recipes-container">
+    <div *ngFor="let recipe of recipeList" class="recipe-card">
+      <div class="card" (click)="onCardClick(recipe)">
+        <img class="card-image" [src]="recipe.image" alt="Recipe image" />
+        <div class="card-content">
+          <h3 class="card-title">{{ recipe.title }}</h3>
+        </div>
+      </div>
+      <button class="like-btn" (click)="addToLiked(recipe)">Add to Liked</button>
     </div>
-    <div class="col-3">
-    <app-cuisine></app-cuisine>
+  </div>
+
+  <ng-template #noResults>
+    <p class="no-results">No results found or loading...</p>
+  </ng-template>
+</div>
+
+<div *ngIf="showRecipeDetail===true && showRecipeList===false" class="recipe-container">
+  <h1 class="recipe-title">
+    {{ recipeDetailData?.title || "Loading Recipe..." }}
+  </h1>
+
+  <div class="recipe-row">
+    <!-- Image -->
+    <div class="image-section">
+      <h2>Image</h2>
+      <img
+        *ngIf="recipeDetailData?.image"
+        [src]="recipeDetailData.image"
+        alt="Recipe Image"
+        class="recipe-image"
+      />
+    </div>
+
+    <div class="ingredients-section">
+      <h2>Ingredients</h2>
+      <ul>
+        <li *ngFor="let ingredient of recipeDetailData?.extendedIngredients">
+          {{ ingredient.original }}
+        </li>
+      </ul>
+    </div>
+    <div class="about-section">
+      <h2>About</h2>
+      <div [innerHTML]="recipeDetailData?.summary"></div>
+    </div>
+  </div>
 </div>

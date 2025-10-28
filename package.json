@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 4300",
+    "start:proxy":"ng serve --port 4300 --proxy-config proxy.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -20,6 +21,7 @@
     "@angular/router": "^20.3.7",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "ngx-ui-loader": "^19.0.0",
     "primeflex": "^4.0.0",
     "primeicons": "^7.0.0",
     "primeng": "^20.2.0",
