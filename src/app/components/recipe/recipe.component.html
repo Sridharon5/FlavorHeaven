@@ -1,33 +1,31 @@
-<div class="row-1">
-  <div class="col-12 content">
-    <div class="section-title" style="font-size: 2em; text-align: center;">
-      {{ recipeData?.title || 'Loading Recipe...' }}
+<div class="recipe-container">
+  <h1 class="recipe-title">
+    {{ recipeData?.title || "Loading Recipe..." }}
+  </h1>
+
+  <div class="recipe-row">
+    <!-- Image -->
+    <div class="image-section">
+      <h2>Image</h2>
+      <img
+        *ngIf="recipeData?.image"
+        [src]="recipeData.image"
+        alt="Recipe Image"
+        class="recipe-image"
+      />
     </div>
-  </div>
-</div>
 
-<div class="row-2">
-  <div class="col-12 content image" style="text-align:center; padding: 0;">
-    <img *ngIf="recipeData?.image" [src]="recipeData.image" alt="Delicious Recipe" class="img-fluid" />
-  </div>
-</div>
-
-<div class="row-3">
-  <div class="row">
-    <!-- Recipe Ingredients on the left -->
-    <div class="col-4 content" id="ingredients" style="text-align:left;">
-      <div class="section-title" style="font-size: 30px;">Recipe Ingredients</div>
+    <div class="ingredients-section">
+      <h2>Ingredients</h2>
       <ul>
         <li *ngFor="let ingredient of recipeData?.extendedIngredients">
           {{ ingredient.original }}
         </li>
       </ul>
     </div>
-
-    <!-- About section on the right -->
-    <div class="col-8 content summary" style="text-align:left;">
-      <div class="section-title" style="font-size: 30px;">About</div>
-      <p [innerHTML]="recipeData?.summary"></p>
+    <div class="about-section">
+      <h2>About</h2>
+      <div [innerHTML]="recipeData?.summary"></div>
     </div>
   </div>
 </div>
