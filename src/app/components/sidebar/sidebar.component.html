@@ -6,7 +6,7 @@
   <nav class="nav-links">
     <a
       class="nav-item"
-      routerLink="home"
+      routerLink="/home"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
     >
@@ -23,4 +23,12 @@
       <span>Liked</span>
     </a>
   </nav>
+
+  <!-- LOGOUT BUTTON -->
+  <div class="logout-container">
+    <button class="logout-btn" (click)="onLogout()">
+      <i class="bi bi-box-arrow-right icon"></i>
+      <span>Logout</span>
+    </button>
+  </div>
 </div>

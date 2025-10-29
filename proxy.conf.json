@@ -1,4 +1,12 @@
 {
+
+   "/api/user": {
+    "target": "http://localhost:8080",
+    "changeOrigin": true,
+    "secure": false,
+    "timeout": 7200000,
+    "logLevel": "debug"
+  } ,
    "/api": {
     "pathRewrite": {
       "^/api": ""
@@ -8,5 +16,6 @@
     "secure": false,
     "timeout": 7200000,
     "logLevel": "debug"
-  } 
+  }
+  
 }

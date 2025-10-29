@@ -1,0 +1,80 @@
+<div class="auth-page flex justify-center items-center h-screen bg-auth">
+    
+  <p-card class="auth-card">
+    
+    <ng-template #header>
+      <span *ngIf="errorMessage" class="error-banner">
+      {{ errorMessage }}
+    </span>
+      <div class="header">
+        <h2 class="m-0">{{ isLogin ? 'Login to Flavor Haven' : 'Create Account' }}</h2>
+        <small>{{ isLogin ? 'Fill your login details' : 'Fill your signup details' }}</small>
+      </div>
+    </ng-template>
+   
+
+    <!-- LOGIN FORM -->
+    <form *ngIf="isLogin" [formGroup]="loginForm" (ngSubmit)="onLogin()" class="p-fluid">
+      <div class="field">
+        <label>Username</label>
+        <input pInputText formControlName="username" class="input-field" placeholder="Enter User ID" />
+        <small *ngIf="showError(loginForm, 'username')" class="error-text">Required</small>
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <p-password formControlName="password" [feedback]="false" [toggleMask]="true"
+          placeholder="Enter Password"></p-password>
+        <small *ngIf="showError(loginForm, 'password')" class="error-text">Required</small>
+      </div>
+      <div class="button-container">
+      <p-button label="Login" type="submit"></p-button>
+      </div>
+      <p class="switch-text">
+        Don’t have an account?
+        <a (click)="toggleForm()">Sign Up</a>
+      </p>
+    </form>
+
+    <!-- SIGNUP FORM -->
+    <form *ngIf="!isLogin" [formGroup]="signupForm" (ngSubmit)="onSignup()" class="p-fluid">
+      <div class="field">
+        <label>Full Name</label>
+        <input pInputText formControlName="name" class='input-field' placeholder="Enter Full Name" />
+        <small *ngIf="showError(signupForm, 'name')" class="error-text">Required</small>
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input pInputText formControlName="email"  class='input-field' placeholder="Enter Email" />
+        <small *ngIf="showError(signupForm, 'email')" class="error-text">Required</small>
+      </div>
+      <div class="field">
+        <label>Username</label>
+        <input pInputText formControlName="username"  class='input-field' placeholder="Enter Username" />
+        <small *ngIf="showError(signupForm, 'username')" class="error-text">Required</small>
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <p-password formControlName="password" [feedback]="false" [toggleMask]="true"
+          placeholder="Enter Password"></p-password>
+        <small *ngIf="showError(signupForm, 'password')" class="error-text">Required</small>
+      </div>
+      <div class="field">
+        <label>Confirm Password</label>
+        <p-password formControlName="confirmPassword" [feedback]="false" [toggleMask]="true"
+          placeholder="Confirm Password"></p-password>
+        <small *ngIf="showError(signupForm, 'confirmPassword')" class="error-text">Required</small>
+      </div>
+
+     <div class="button-container">
+      <p-button label="Sign Up" type="submit"></p-button>
+      </div>
+      <p class="switch-text">
+        Already have an account?
+        <a (click)="toggleForm()">Login</a>
+      </p>
+    </form>
+  </p-card>
+</div>

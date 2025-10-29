@@ -26,6 +26,11 @@ export class ApiClient {
   public _getURL(url: string) {
     return `${environment.apiPath}${url}`;
   }
+    post(url: string, data?: any, p0?: { headers: { 'Content-Type': string; }; responseType: string; }) {
+    return this.http.post<RestResponse>(this._getURL(url), data, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
 
   
 }
