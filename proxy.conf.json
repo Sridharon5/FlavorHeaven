@@ -1,7 +1,7 @@
 {
 
    "/api/user": {
-    "target": "https://flavor-haven-2.onrender.com",
+    "target": "http://localhost:8080",
     "changeOrigin": true,
     "secure": false,
     "timeout": 7200000,

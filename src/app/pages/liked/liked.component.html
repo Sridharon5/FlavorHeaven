@@ -1,11 +1,16 @@
-<!-- <div style="margin-top: 20px;">
-    <div class="heading">Favourites</div>
-    <div class="row">
-      <app-card
-        class="col-3 likeCom"
-        *ngFor="let recipe of likedRecipe"
-        [recipe]="recipe"
-      ></app-card>
+<div *ngIf="showRecipeList===true && showRecipeDetail===false" class="recipe-list">
+  <div *ngIf="recipeList.length > 0; else noResults" class="recipes-container">
+    <div *ngFor="let recipe of recipeList" class="recipe-card">
+      <div class="card" (click)="onCardClick(recipe)">
+        <img class="card-image" [src]="recipe.image" alt="Recipe image" />
+        <div class="card-content">
+          <h3 class="card-title">{{ recipe.title }}</h3>
+        </div>
+      </div>
+      <button class="like-btn" (click)="removeFromLiked(recipe)">Remove From Liked</button>
     </div>
   </div>
-   -->
+  <ng-template #noResults>
+    <p class="no-results">No results found or loading...</p>
+  </ng-template>
+</div>

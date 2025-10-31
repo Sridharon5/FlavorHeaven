@@ -91,10 +91,16 @@ export class LoginComponent implements OnInit {
     };
     this.api.post('user/login', payload).subscribe({
       next: (res: any) => {
+        if(res.status==='success'){
+         this.auth.setUserId(res.userId);
+         this.auth.setUsername(res.username);
         this.router.navigate(['home']);
         this.auth.setIsAuthenticated(true);
         this.errorMessage = 'User Registered Successfully';
-      
+        console.log(this.auth.getUserId());
+        console.log(this.auth.getUsername());
+        console.log(this.auth.getIsAuthenticated());
+        }
       this.loader.stop();
         
       },

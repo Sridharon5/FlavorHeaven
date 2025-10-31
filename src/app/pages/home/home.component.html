@@ -1,4 +1,7 @@
-<div *ngIf="showRecipeList===false && showRecipeDetail===false" class="home-container">
+<div
+  *ngIf="showRecipeList === false && showRecipeDetail === false"
+  class="home-container"
+>
   <!-- Left Section -->
   <div class="home-left">
     <!-- Dishes Section -->
@@ -50,20 +53,26 @@
   </div>
 </div>
 
-<div *ngIf="showRecipeList===true && showRecipeDetail===false" class="recipe-list">
+<div
+  *ngIf="showRecipeList === true && showRecipeDetail === false"
+  class="recipe-list"
+>
   <div class="heading">
-    Search results for: <span>{{ recipeName}}</span>
+    <span>Search results for: {{ recipeName }}</span>
+    <button class="button" (click)="backToRecipe()">Back To Main Page</button>
   </div>
 
   <div *ngIf="recipeList.length > 0; else noResults" class="recipes-container">
-    <div *ngFor="let recipe of recipeList" class="recipe-card">
-      <div class="card" (click)="onCardClick(recipe)">
+    <div *ngFor="let recipe of recipeList" class="recipe-cards">
+      <div class class="card" (click)="onCardClick(recipe)">
         <img class="card-image" [src]="recipe.image" alt="Recipe image" />
-        <div class="card-content">
-          <h3 class="card-title">{{ recipe.title }}</h3>
-        </div>
+
+        <h3 class="card-title">{{ recipe.title }}</h3>
+
+        <button class="like-btn" (click)="addToLiked(recipe)">
+          Add to Liked
+        </button>
       </div>
-      <button class="like-btn" (click)="addToLiked(recipe)">Add to Liked</button>
     </div>
   </div>
 
@@ -72,10 +81,16 @@
   </ng-template>
 </div>
 
-<div *ngIf="showRecipeDetail===true && showRecipeList===false" class="recipe-container">
-  <h1 class="recipe-title">
-    {{ recipeDetailData?.title || "Loading Recipe..." }}
-  </h1>
+<div
+  *ngIf="showRecipeDetail === true && showRecipeList === false"
+  class="recipe-container"
+>
+  <div class="recipe-detail-header">
+    <span>{{ recipeDetailData?.title || "Loading Recipe..." }}</span>
+    <button class="recipe-detail-button" (click)="backToRecipeListPage()">
+      Back To Recipe List Page
+    </button>
+  </div>
 
   <div class="recipe-row">
     <!-- Image -->
