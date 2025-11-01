@@ -46,7 +46,7 @@ export class HomeComponent {
     const apiKey=this.api.getApiKey();
     this.loader.start();
     this.api
-      .getSpoonacularUrl(`complexSearch?query=${name}&apiKey=${apiKey}`)
+      .getSpoonacularUrl(`complexSearch?query=${name}`)
       .subscribe({
         next: (res: any) => {
           this.recipeList=res.results;
@@ -66,7 +66,7 @@ export class HomeComponent {
    const apiKey=this.api.getApiKey();
     this.loader.start();
     this.api
-      .getSpoonacularUrl(`complexSearch?query=${name}&apiKey=${apiKey}`)
+      .getSpoonacularUrl(`complexSearch?query=${name}`)
       .subscribe({
         next: (res: any) => {
           this.recipeList=res.results;
@@ -85,7 +85,7 @@ export class HomeComponent {
    const apiKey=this.api.getApiKey();
     this.loader.start();
     this.api
-      .getSpoonacularUrl(`complexSearch?query=${name}&apiKey=${apiKey}`)
+      .getSpoonacularUrl(`complexSearch?query=${name}`)
       .subscribe({
         next: (res: any) => {
           this.recipeList=res.results;
@@ -104,7 +104,7 @@ export class HomeComponent {
     const apiKey=this.api.getApiKey();
     this.loader.start();
      this.api
-      .getSpoonacularUrl(`${id}/information?includeNutrition=false&apiKey=${apiKey}`)
+      .getSpoonacularUrl(`${id}/information?includeNutrition=false`)
       .subscribe({
         next: (res: any) => {
           this.recipeDetailData=res;
