@@ -21,10 +21,10 @@ export class ApiClient {
     return this.apiKey;
   }
   getUserUrl(url: string) {
-    return this.http.get<RestResponse>(this._getUserURL(url),{headers: { 'Content-Type': 'application/json' },withCredentials: true,});
+    return this.http.get<RestResponse>(this._getUserURL(url),{headers: { 'Content-Type': 'application/json' }});
   }
   getSpoonacularUrl(url: string) {
-    return this.http.get<RestResponse>(this._getSpoonacularURL(url),{headers: { 'Content-Type': 'application/json' },withCredentials: true,});
+    return this.http.get<RestResponse>(this._getSpoonacularURL(url),{headers: { 'Content-Type': 'application/json' }});
   }
   public _getUserURL(url: string) {
     return `${environment.userUrl}${url}`;
