@@ -20,14 +20,20 @@ export class ApiClient {
   getApiKey(){
     return this.apiKey;
   }
-  get(url: string) {
-    return this.http.get<RestResponse>(this._getURL(url),{headers: { 'Content-Type': 'application/json' },withCredentials: true,});
+  getUserUrl(url: string) {
+    return this.http.get<RestResponse>(this._getUserURL(url),{headers: { 'Content-Type': 'application/json' },withCredentials: true,});
   }
-  public _getURL(url: string) {
-    return `${environment.apiPath}${url}`;
+  getSpoonacularUrl(url: string) {
+    return this.http.get<RestResponse>(this._getSpoonacularURL(url),{headers: { 'Content-Type': 'application/json' },withCredentials: true,});
   }
-    post(url: string, data?: any, p0?: { headers: { 'Content-Type': string; }; responseType: string; }) {
-    return this.http.post<RestResponse>(this._getURL(url), data, {
+  public _getUserURL(url: string) {
+    return `${environment.userUrl}${url}`;
+  }
+  public _getSpoonacularURL(url: string) {
+    return `${environment.spoonacularUrl}${url}`;
+  }
+  post(url: string, data?: any, p0?: { headers: { 'Content-Type': string; }; responseType: string; }) {
+    return this.http.post<RestResponse>(this._getUserURL(url), data, {
       headers: { 'Content-Type': 'application/json' }
     });
   }

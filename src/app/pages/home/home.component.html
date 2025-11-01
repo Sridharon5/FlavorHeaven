@@ -64,8 +64,8 @@
 
   <div *ngIf="recipeList.length > 0; else noResults" class="recipes-container">
     <div *ngFor="let recipe of recipeList" class="recipe-cards">
-      <div class class="card" (click)="onCardClick(recipe)">
-        <img class="card-image" [src]="recipe.image" alt="Recipe image" />
+      <div class class="card" >
+        <img class="card-image" [src]="recipe.image" alt="Recipe image" (click)="onCardClick(recipe)" />
 
         <h3 class="card-title">{{ recipe.title }}</h3>
 
